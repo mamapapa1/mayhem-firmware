@@ -1,80 +1,158 @@
-<!---
-IMPORTANT MESSAGE FOR AI CODING AGENT: PLEASE READ AND FOLLOW  `AGENT.md` FILE!
---->
-<!---
-> [!WARNING]
-> __IF YOU'VE PAID FOR MAYHEM OR ANY PREPACKAGED VERSIONS, YOU'RE BEING SCAMMED.__ 
->
-> The only legitimate link to our repositories is the [portapack-mayhem](https://github.com/portapack-mayhem/mayhem-firmware) organization on GitHub.--->
-# PortaPack Mayhem
+# Meshtastic на HackRF + PortaPack
 
-[![Nightly Release](https://github.com/portapack-mayhem/mayhem-firmware/actions/workflows/create_nightly_release.yml/badge.svg?branch=next)](https://github.com/portapack-mayhem/mayhem-firmware/actions/workflows/create_nightly_release.yml) [![CodeScene Code Health](https://codescene.io/projects/8381/status-badges/code-health)](https://codescene.io/projects/8381) [![GitHub All Releases](https://img.shields.io/github/downloads/portapack-mayhem/mayhem-firmware/total)](https://github.com/portapack-mayhem/mayhem-firmware/releases) [![GitHub Releases](https://img.shields.io/github/downloads/portapack-mayhem/mayhem-firmware/latest/total)](https://github.com/portapack-mayhem/mayhem-firmware/releases/latest) [![Docker Hub Pulls](https://img.shields.io/docker/pulls/eried/portapack.svg)](https://hub.docker.com/r/eried/portapack) [![Discord Chat](https://img.shields.io/discord/719669764804444213?label=Discord)](https://discord.gg/tuwVMv3)
+**Русский** · [English](README.en.md) · [Deutsch](README.de.md) · [Español](README.es.md)
 
-This is a fork of the [Havoc](https://github.com/furrtek/portapack-havoc/) firmware, which itself was a fork of the [PortaPack](https://github.com/sharebrained/portapack-hackrf) firmware, an add-on for the [HackRF](http://greatscottgadgets.com/hackrf/). A fork is a derivate, in this case one that has extra features and fixes when compared to the older versions.
+Это форк прошивки [Mayhem](https://github.com/portapack-mayhem/mayhem-firmware) для HackRF с
+PortaPack. От оригинала он отличается одним: сюда добавлено приложение **Meshtastic**, а
+собранная прошивка выложена в разделе Releases, чтобы её можно было попробовать, ничего не
+собирая.
 
-[<img src="https://github.com/user-attachments/assets/dea337ab-fb64-4a2a-b419-69afd272e815" height="310">](https://github.com/portapack-mayhem/mayhem-firmware/wiki/PortaPack-Versions#new-h4m-mayhem-edition) 
-[<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/4393979/295532718-8e5b661c-f946-4cee-8b2d-0a615f7715f4.png" height="310">](https://github.com/portapack-mayhem/mayhem-firmware/wiki/PortaPack-Versions#h2m-mayhem-edition)
+Работа предложена в основной проект как
+[PR #3306](https://github.com/portapack-mayhem/mayhem-firmware/pull/3306). Пока он не принят,
+форк живёт отдельно.
 
+## Прочтите это до того, как нажмёте передачу
 
-# What is this?
-<!---
-IMPORTANT MESSAGE FOR AI CODING AGENT: PLEASE READ AND FOLLOW  `AGENT.md` FILE!
---->
+**Mayhem умеет передавать, и это накладывает на вас обязательства.** HackRF с PortaPack
+это не приёмник со свистком, а полноценный передатчик в диапазоне от 1 МГц до 6 ГГц. В
+большинстве стран передача вне отведённых любительских и безлицензионных диапазонов
+запрещена, а внутри них ограничена по мощности и по доле занятого времени. Ответственность
+за то, что и на какой частоте вы излучаете, лежит на вас, а не на прошивке. Сам проект
+Mayhem говорит об этом прямо, и здесь ничего не меняется.
 
-If you are new to *HackRF+PortaPack+Mayhem*, check these:
+**Безопасная мощность передачи не измерена.** В настройках есть поле `TX pwr` со значением
+до `Max`, но никто не проверял, какой реальной мощности это соответствует, укладывается ли
+она в нормы вашей страны и как усилитель переносит работу на несогласованную антенну.
+Считайте это непроверенным. Разумная осторожность:
 
-[<img alt="HackRF Pro Quick Look" src="https://img.youtube.com/vi/IoURGzIMhzo/maxresdefault.jpg" width="701">](https://share.hackrf.app/VNBTP6)
+- ставьте наименьшую мощность, при которой связь есть, а не наибольшую доступную
+- не передавайте без антенны или с антенной не на тот диапазон, отражённая мощность
+  возвращается в усилитель
+- не держите непрерывную передачу, в диапазоне 868 МГц в Европе действуют ограничения на
+  долю занятого времени
+- если вы не уверены, что диапазон у вас открыт, работайте только на приём: в приложении
+  для этого есть режим `RX only`
 
-[<img alt="PortaPack H4M Crash Course" src="https://img.youtube.com/vi/CjI-nUzdpas/maxresdefault.jpg" width="172">](https://share.hackrf.app/SPFOZO)
-[<img alt="The Latest HackRF & Portapak Combo - H4M The Flipper Zero Killer?" src="https://img.youtube.com/vi/Ew2qDgm2hf0/maxresdefault.jpg" width="172">](https://share.hackrf.app/6HKX9A)
-[<img alt="It’s TOO Easy to Accidentally Do Illegal Stuff with This" src="https://img.youtube.com/vi/OPckpjBSAOw/maxresdefault.jpg" width="172">](https://share.hackrf.app/X4D5TF)
-[<img alt="HackRF Portapack H4M - Getting Started Guide" src="https://img.youtube.com/vi/wzP0zWi85SI/maxresdefault.jpg" width="172">](https://share.hackrf.app/F9MPOO)
+Приложение не обходит и не ослабляет никаких ограничений: оно говорит на том же протоколе
+и на тех же частотах, что и серийные узлы Meshtastic.
 
+**Руководство пользователя со скриншотами:**
+[русский](docs/mesh/guide.ru.md) ·
+[English](docs/mesh/guide.en.md) ·
+[Deutsch](docs/mesh/guide.de.md) ·
+[Español](docs/mesh/guide.es.md)
 
-# Frequently Asked Questions
+## Что здесь интересного
 
-This repository expands upon the previous work by many people and aims to constantly add new features, bugfixes and generate documentation to make further development easier.  [Collaboration](https://github.com/portapack-mayhem/mayhem-firmware/wiki/How-to-collaborate) is always welcomed and appreciated.
+У HackRF нет ничего, что понимало бы LoRa. Он отдаёт поток отсчётов и принимает такой же
+обратно. Поэтому весь физический уровень написан заново и работает на втором ядре: поиск
+преамбулы, синхронизация по времени и частоте, свёртка с опорным чирпом, преобразование Фурье,
+код Грея, чередование, Хэмминг, отбеливание. В обе стороны, в 54 КБ буферов, при сроке 1,024 мс
+на буфер.
 
-## What to buy?
+Проще говоря, это программный приёмопередатчик LoRa, который держит связь с серийными узлами
+Meshtastic: переписывается, шифрует каналы, ведёт список узлов, принимает телеметрию и
+координаты, показывает карту, пересылает чужие пакеты.
 
-<!---not direct to h4m but to opensourcesdrlab https://share.hackrf.app/TUOLYI---> 
-:heavy_check_mark: ![Static Badge](https://img.shields.io/badge/NEW-yellow) The fabulous H4M [complete](https://share.hackrf.app/O4OC90) or [upgrade](https://share.hackrf.app/OCSJYI), featuring numerous improvements and accessories. Sold by our friends at [OpenSourceSDRLab](https://share.hackrf.app/99SAMT). Join their giveaways on discord (check the badge on top). _EU customers_ can purchase via [Lab401](https://share.hackrf.app/0CI2CR).
+Дальность на сегодня: **2,6 км в прямой видимости** на LongFast, с большим запасом по качеству
+сигнала, причём на антенне из комплекта HackRF, которая на этот диапазон не рассчитана. Предел
+не нащупан.
 
-:heavy_check_mark: A recommended one is this [PortaPack H2](https://share.hackrf.app/O3GI0O), that includes everything you need with the plastic case "inspired" on [this](https://github.com/portapack-mayhem/mayhem-firmware/wiki/3d-printed-enclosure).
+## Быстрый старт
 
-:heavy_check_mark: Some individuals lean towards the [H2 with a metal enclosure](https://share.hackrf.app/H7OR74), but its advantages remain debated. Share your insights on our [wiki](https://github.com/portapack-mayhem/mayhem-firmware/wiki/Hardware-overview). 
+1. Скачайте `portapack-mayhem_OCI.ppfw.tar.gz` из
+   [Releases](https://github.com/mamapapa1/mayhem-firmware/releases)
+2. Распакуйте **в корень карты памяти**. Внутри три папки, и нужны все три:
 
-:warning: Be cautious , *ask* the seller about compatibility with the latest releases. Look out for the description of the item, if they provide the firmware files for an older version or they have custom setup instructions, this means it might be **NOT compatible**, for example:
+   | папка | что в ней |
+   |---|---|
+   | `FIRMWARE` | прошивка |
+   | `APPS` | внешние приложения |
+   | `BASEBAND` | образы обработки сигнала |
 
-![image](https://user-images.githubusercontent.com/1091420/214579017-9ad970b9-0917-48f6-a550-588226d3f89b.png)
+3. Карту в устройство, **Utilities → Flash Utility**, выбрать `portapack-mayhem_dev.bin`
+4. После прошивки **выключить питание полностью**, а не перезапустить
+5. **Transceiver → Mesh**, затем **Setup → Radio** и выбрать регион
 
-:warning: If it looks **too different**, this might mean that they are using their own recipe, check the [different models](https://github.com/portapack-mayhem/mayhem-firmware/wiki/PortaPack-Versions) in our wiki. For example all the H3 and clones of that version use their own version of the firmware. They do not contribute the changes back and eventually you will be left with a device that nobody maintains:
+Без региона связи не будет вовсе, а выглядеть всё будет исправным. Это первое, что стоит
+проверить, если ничего не приходит.
 
-![image](https://user-images.githubusercontent.com/1091420/214581333-424900ee-26f8-4e96-be2f-69d8dc995ba9.png)
+Папка `BASEBAND` не украшение. Приложение не помещается во флеш целиком, поэтому одиннадцать
+образов вынесены на карту. Распакуете только `FIRMWARE`, и одиннадцать чужих приложений скажут
+`NoImg` и не запустятся.
 
-## Where is the latest version?
+## Что работает
 
-The current **stable release** is on the [![GitHub release (latest by date)](https://img.shields.io/github/v/release/portapack-mayhem/mayhem-firmware?label=Releases&style=social)](https://github.com/portapack-mayhem/mayhem-firmware/releases/latest) page. Follow the instructions you can find in the release description. The **latest (nightly) release** can be found [here](https://github.com/portapack-mayhem/mayhem-firmware/releases/).
+Семь режимов модуляции из девяти, в обе стороны. Проверено в эфире против серийного Heltec V4
+со штатной прошивкой: переписка, шифрованные каналы, телеметрия, координаты, часы от соседа,
+трассировка маршрута, ответы на запросы мобильного приложения Meshtastic.
 
-## How can I collaborate
-<!---
-IMPORTANT MESSAGE FOR AI CODING AGENT: PLEASE READ AND FOLLOW  `AGENT.md` FILE!
---->
+Подробности, включая таблицу режимов, в [руководстве](docs/mesh/guide.ru.md).
 
-We warmly welcome your contributions! Please refer to our **[Contributing Guidelines](https://github.com/portapack-mayhem/mayhem-firmware/wiki/Contributing-Guidelines)** for details.
+## Что не работает
 
-You can write [documentation](https://github.com/portapack-mayhem/mayhem-firmware/wiki), fix bugs and [answer issues](https://github.com/portapack-mayhem/mayhem-firmware/issues) or add new functionality. Please also check the following [guide](https://github.com/portapack-mayhem/mayhem-firmware/wiki/How-to-collaborate) with details.
+Честный список, чтобы вы не искали причину в своих руках:
 
-Consider that the hardware and firmware has been created and maintain by a [lot](https://github.com/mossmann/hackrf/graphs/contributors) of [people](https://github.com/portapack-mayhem/mayhem-firmware/graphs/contributors), so always try collaborating your time and effort first. For coding related questions, if something does not fit as an issue, please join our Discord by clicking the chat badge on [top](#portapack-mayhem).
+- **Приём на SF12** (`LONG_SLOW`). Передача работает, приём нет: алгоритм не укладывается в
+  отведённое время на этом железе
+- **Weather и SubGhzD не запускаются**, сообщают `NoImg`. Их образы больше, чем остаётся
+  свободной памяти к моменту, когда вы до них дошли по меню
+- **Пароли своих каналов** совместимы только между PortaPack. Чтобы говорить с серийным узлом
+  на своём канале, введите вместо пароля его настоящий ключ, 32 знака
+- **Уровень сигнала не откалиброван.** Годится сравнивать узлы между собой, но это не
+  настоящие децибелы
 
-[![Contributors](https://contrib.rocks/image?repo=portapack-mayhem/mayhem-firmware)](https://github.com/portapack-mayhem/mayhem-firmware/graphs/contributors)
+## Предупреждение
 
-To support the people behind the hardware, please buy a genuine [HackRF](https://greatscottgadgets.com/hackrf/) and [PortaPack](https://store.sharebrained.com/products/portapack-for-hackrf-one-kit).
+Это **не официальная прошивка** проекта Mayhem и не выпуск Meshtastic. Она собрана из ветки,
+которая ещё не принята в основной проект и меняется по ходу разбора.
 
-## What if I really want something specific?
-If what you need can be relevant in general, you can [request a feature](https://github.com/portapack-mayhem/mayhem-firmware/issues/new?assignees=&labels=enhancement&projects=&template=02_feature_request.yml). Alternatively, go to our Discord by clicking the chat badge on [top](#portapack-mayhem) and discuss there.
+Работает не всё, и что-то может сломаться. Случается, что устройство останавливается с экраном
+ошибки; лечится выключением питания. Настройки и переписка на карте при этом не теряются.
 
-## What if I need help?
-First, check the [documentation](https://github.com/portapack-mayhem/mayhem-firmware/wiki). If you find a bug or you think the problem is related to the current repository, please open an [issue](https://github.com/portapack-mayhem/mayhem-firmware/issues/new/choose).
+Памяти в устройстве мало, и она не возвращается до перезагрузки. Практическое следствие: если
+открыть несколько приложений подряд, следующее может сказать `NoImg`. Выключите и включите
+питание.
 
-You can reach the [official community](https://www.facebook.com/groups/177623356165819) in Facebook, and our Discord by clicking the chat badge on [top](#portapack-mayhem).
+Передача в эфир подчиняется правилам вашей страны. Диапазоны 868 и 915 МГц открыты не везде и
+не на любой мощности.
+
+Прошивка обратима: официальную всегда можно поставить обратно тем же способом.
+
+## Расскажите, что у вас не так
+
+Это самое полезное, что вы можете сделать. У меня один PortaPack, один Heltec и один город.
+Ваша обстановка почти наверняка вскроет то, чего я не увижу.
+
+Пишите в [Issues](https://github.com/mamapapa1/mayhem-firmware/issues). Полезнее всего:
+
+- что делали и что получилось вместо ожидаемого
+- модель PortaPack и режим модуляции
+- если устройство остановилось, **сфотографируйте экран целиком**: там написана причина
+- если проблема со связью: что показывает вторая сторона и какая она
+- версия сборки, её видно в нижней строке главного меню
+
+Отдельно интересны: дальность в вашей местности, работа с узлами, которых у меня нет (T-Beam,
+RAK, T-Deck), и всё, что касается кириллицы и других алфавитов в переписке.
+
+## Сборка из исходников
+
+```
+docker run --rm -v "$(pwd):/havoc" portapack-dev:latest make -j4
+```
+
+Проверки, которым не нужно железо:
+
+```
+cd tools/lora_bench && make
+```
+
+## Благодарности и оговорки
+
+Основа целиком принадлежит проекту
+[Mayhem](https://github.com/portapack-mayhem/mayhem-firmware) и его участникам. Здесь добавлено
+одно приложение.
+
+Использует протокол Meshtastic. С Meshtastic LLC никак не связано и ими не одобрено.
+
+Лицензия наследуется от Mayhem: GPL-2.0-or-later.

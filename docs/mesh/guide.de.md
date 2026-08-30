@@ -7,13 +7,24 @@ Zwischen ihnen wechselt man mit dem Finger oder dem Steuerkreuz.
 
 ## Inhalt
 
+- [Erste Schritte](#erste-schritte)
 - [Chat](#chat)
 - [Unterhaltungen und Kanäle](#unterhaltungen-und-kanäle)
 - [Chat-Einstellungen](#chat-einstellungen)
 - [Knotenliste](#knotenliste)
 - [Knotenkarte](#knotenkarte)
 - [Einstellungen](#einstellungen)
-- [Erste Schritte](#erste-schritte)
+
+## Erste Schritte
+
+1. **Setup → Radio**, Region wählen. Vorher geht nichts
+2. **Setup → Profile**, einen Namen setzen
+3. Zurück in den **Chat** und warten: Nachbarn stellen sich von selbst vor, meist binnen
+   weniger Minuten
+4. Mit `»` in den gemeinsamen Kanal schreiben
+
+Bleibt es nach einigen Minuten still, prüfen Sie auf der Gegenseite drei Dinge: Region, Preset
+und den Namen des Hauptkanals. Weicht eines davon ab, sind beide Knoten füreinander taub.
 
 ## Chat
 
@@ -211,6 +222,11 @@ gar keine Verbindung, während alles andere gesund aussieht.
 | `Ignore MQTT pkts` | Pakete aus dem Internet ausblenden |
 | `TX pwr` | Sendeleistung |
 
+**Die Sendeleistung ist nicht gemessen.** Niemand hat geprüft, welcher tatsächlichen Leistung
+`Max` entspricht, ob sie die Grenzwerte bei Ihnen einhält und wie der Verstärker eine
+fehlangepasste Antenne verträgt. Nehmen Sie die kleinste Stufe, mit der die Verbindung steht,
+und senden Sie nicht ohne Antenne.
+
 Unten steht `Whip 1/4 wave` mit der Viertelwellenlänge für die eingestellte Frequenz. Ein Draht
 dieser Länge auf einer Metallfläche arbeitet spürbar besser als eine Beipack-Antenne für ein
 anderes Band.
@@ -248,14 +264,3 @@ niemand privat schreiben, und Sie werden nicht sehen, woran es liegt.
 
 Das Echo ist der bequemste Reichweitentest: eine Nachricht von der Gegenseite prüft beide
 Richtungen auf einmal. Kommt das Echo zurück, hat man Sie gehört und Sie die Antwort.
-
-## Erste Schritte
-
-1. **Setup → Radio**, Region wählen. Vorher geht nichts
-2. **Setup → Profile**, einen Namen setzen
-3. Zurück in den **Chat** und warten: Nachbarn stellen sich von selbst vor, meist binnen
-   weniger Minuten
-4. Mit `»` in den gemeinsamen Kanal schreiben
-
-Bleibt es nach einigen Minuten still, prüfen Sie auf der Gegenseite drei Dinge: Region, Preset
-und den Namen des Hauptkanals. Weicht eines davon ab, sind beide Knoten füreinander taub.

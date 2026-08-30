@@ -7,13 +7,25 @@ Setup. Move between them with a finger or the navigation cross.
 
 ## Contents
 
+- [Getting started](#getting-started)
 - [Chat](#chat)
 - [Conversations and channels](#conversations-and-channels)
 - [Chat settings](#chat-settings)
 - [Node list](#node-list)
 - [Node card](#node-card)
 - [Settings](#settings)
-- [Getting started](#getting-started)
+
+## Getting started
+
+1. **Setup → Radio**, choose your region. Nothing works before this
+2. **Setup → Profile**, set a name
+3. Go back to **Chat** and wait: neighbours introduce themselves on their own, usually within
+   a few minutes
+4. Write to the shared channel with the `»` button
+
+If nobody appears after a few minutes, check three things on the other side: the region, the
+preset and the primary channel name. A difference in any one of them leaves both nodes deaf to
+the other.
 
 ## Chat
 
@@ -213,6 +225,11 @@ no link at all while everything else still looks healthy.
 | `Ignore MQTT pkts` | hide packets that arrived through the internet |
 | `TX pwr` | transmit power |
 
+**Transmit power has not been measured.** Nobody has checked what actual power `Max`
+corresponds to, whether it stays inside the limits where you are, or how the amplifier takes a
+mismatched antenna. Use the lowest setting that gets through, and do not transmit without an
+antenna.
+
 At the bottom, `Whip 1/4 wave` gives the quarter wave length for the current frequency. A wire
 of that length on a metal base works noticeably better than a kit antenna cut for another band.
 
@@ -249,15 +266,3 @@ write to you privately, and you will not see why the messages fail.
 
 Echo is the easy way to test range: one message from the far end checks both directions at
 once. If the echo comes back, they heard you and you heard the answer.
-
-## Getting started
-
-1. **Setup → Radio**, choose your region. Nothing works before this
-2. **Setup → Profile**, set a name
-3. Go back to **Chat** and wait: neighbours introduce themselves on their own, usually within
-   a few minutes
-4. Write to the shared channel with the `»` button
-
-If nobody appears after a few minutes, check three things on the other side: the region, the
-preset and the primary channel name. A difference in any one of them leaves both nodes deaf to
-the other.

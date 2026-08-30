@@ -7,13 +7,24 @@ Setup. Se pasa de una a otra con el dedo o con la cruceta.
 
 ## Contenido
 
+- [Para empezar](#para-empezar)
 - [Chat](#chat)
 - [Conversaciones y canales](#conversaciones-y-canales)
 - [Ajustes del chat](#ajustes-del-chat)
 - [Lista de nodos](#lista-de-nodos)
 - [Ficha del nodo](#ficha-del-nodo)
 - [Ajustes](#ajustes)
-- [Para empezar](#para-empezar)
+
+## Para empezar
+
+1. **Setup → Radio**, elegir la región. Antes de eso no funciona nada
+2. **Setup → Profile**, poner un nombre
+3. Volver al **Chat** y esperar: los vecinos se presentan solos, casi siempre en unos minutos
+4. Escribir al canal compartido con el botón `»`
+
+Si tras unos minutos no aparece nadie, compruebe tres cosas en el otro extremo: la región, el
+preset y el nombre del canal principal. Una diferencia en cualquiera de los tres deja a los dos
+nodos sordos entre sí.
 
 ## Chat
 
@@ -211,6 +222,10 @@ enlace alguno aunque todo lo demás parezca correcto.
 | `Ignore MQTT pkts` | ocultar los paquetes llegados por internet |
 | `TX pwr` | potencia de transmisión |
 
+**La potencia de transmisión no está medida.** Nadie ha comprobado a qué potencia real
+corresponde `Max`, si respeta los límites de su país, ni cómo aguanta el amplificador una
+antena desadaptada. Use el ajuste más bajo con el que haya enlace y no transmita sin antena.
+
 Abajo, `Whip 1/4 wave` da la longitud de un cuarto de onda para la frecuencia actual. Un hilo
 de esa medida sobre una base metálica funciona bastante mejor que una antena del juego cortada
 para otra banda.
@@ -248,14 +263,3 @@ escribirle en privado, y no verá por qué fallan los mensajes.
 
 El eco es la manera cómoda de probar el alcance: un mensaje desde el otro extremo comprueba
 las dos direcciones a la vez. Si el eco vuelve, le oyeron y usted oyó la respuesta.
-
-## Para empezar
-
-1. **Setup → Radio**, elegir la región. Antes de eso no funciona nada
-2. **Setup → Profile**, poner un nombre
-3. Volver al **Chat** y esperar: los vecinos se presentan solos, casi siempre en unos minutos
-4. Escribir al canal compartido con el botón `»`
-
-Si tras unos minutos no aparece nadie, compruebe tres cosas en el otro extremo: la región, el
-preset y el nombre del canal principal. Una diferencia en cualquiera de los tres deja a los dos
-nodos sordos entre sí.

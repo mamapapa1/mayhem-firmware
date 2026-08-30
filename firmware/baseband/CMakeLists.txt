@@ -331,17 +331,23 @@ macro(DeclareTargets chunk_tag name)
 		# not gone: m4_init_from_sd() reads /BASEBAND/<TAG>.img from the SD card, and
 		# that file has to be the same lz4 chunk the flash would have held. Without
 		# this the app for an externalised baseband has nothing to load.
+		# The copy under its tag is what actually ships. m4_init_from_sd() looks the
+		# image up by the four characters in its header, so the file on the card has
+		# to be named for the tag rather than for the build target, and the release
+		# package copies this directory wholesale into /BASEBAND.
 		add_custom_command(
-			OUTPUT ${chunk_tag}.bin ${PROJECT_NAME}.img
+			OUTPUT ${chunk_tag}.bin ${PROJECT_NAME}.img sd_baseband/${chunk_tag}.img
 			COMMAND ${CMAKE_OBJCOPY} -O binary ${PROJECT_NAME}.elf ${chunk_tag}.bin
 			COMMAND ${LZ4} -f -9 ${chunk_tag}.bin ${PROJECT_NAME}.lz4
 			COMMAND ${MAKE_IMAGE_CHUNK} ${PROJECT_NAME}.lz4 ${chunk_tag} ${PROJECT_NAME}.img
+			COMMAND ${CMAKE_COMMAND} -E make_directory sd_baseband
+			COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_NAME}.img sd_baseband/${chunk_tag}.img
 			DEPENDS ${PROJECT_NAME}.elf ${MAKE_IMAGE_CHUNK}
 			VERBATIM
 		)
 
 		set(BASEBAND_EXTERNAL_IMAGES ${BASEBAND_EXTERNAL_IMAGES}
-			${chunk_tag}.bin ${PROJECT_NAME}.img)
+			${chunk_tag}.bin ${PROJECT_NAME}.img sd_baseband/${chunk_tag}.img)
 
 	endif()
 

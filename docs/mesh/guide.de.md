@@ -222,10 +222,13 @@ gar keine Verbindung, während alles andere gesund aussieht.
 | `Ignore MQTT pkts` | Pakete aus dem Internet ausblenden |
 | `TX pwr` | Sendeleistung |
 
-**Die Sendeleistung ist nicht gemessen.** Niemand hat geprüft, welcher tatsächlichen Leistung
-`Max` entspricht, ob sie die Grenzwerte bei Ihnen einhält und wie der Verstärker eine
-fehlangepasste Antenne verträgt. Nehmen Sie die kleinste Stufe, mit der die Verbindung steht,
-und senden Sie nicht ohne Antenne.
+**Wir wissen nicht, mit welcher Leistung wir senden.** Dieses Feld stellt keine Leistung ein,
+sondern die Sendeverstärkung des HackRF, eine Zahl von 0 bis 47. `Custom` ist dieselbe
+Verstärkung von Hand, `Region` senkt sie gegenüber dem Höchstwert um den Unterschied zwischen
+dem Grenzwert Ihrer Region und dem großzügigsten bekannten. Keine Stellung ist geeicht, welcher
+tatsächlichen Leistung sie entspricht, hat niemand gemessen, und einen Grenzwert kann man damit
+nicht sicher einhalten. Nehmen Sie die kleinste Stufe, mit der die Verbindung steht, und senden
+Sie nicht ohne Antenne.
 
 Unten steht `Whip 1/4 wave` mit der Viertelwellenlänge für die eingestellte Frequenz. Ein Draht
 dieser Länge auf einer Metallfläche arbeitet spürbar besser als eine Beipack-Antenne für ein

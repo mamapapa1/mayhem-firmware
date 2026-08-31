@@ -13,16 +13,18 @@ accepted, this fork lives on its own.
 
 ## Read this before you press transmit
 
-**Mayhem can transmit, and that puts obligations on you.** A HackRF with a PortaPack is not a
-receiver with a dongle, it is a full transmitter from 1 MHz to 6 GHz. In most countries
-transmitting outside the amateur and licence-free bands is prohibited, and inside them it is
-limited by power and by duty cycle. Responsibility for what you radiate, and where, is yours
-and not the firmware's. The Mayhem project says as much, and nothing changes here.
+**It is the HackRF that transmits, not the firmware.** With a PortaPack it is not a receiver
+with a dongle, it is a full transmitter from 1 MHz to 6 GHz. In most countries transmitting
+outside the amateur and licence-free bands is prohibited, and inside them it is limited by
+power and by duty cycle. What you put on the air, and where, is your responsibility and not the
+firmware's. The Mayhem project says as much, and nothing changes here.
 
-**Safe transmit power has not been measured.** There is a `TX pwr` field going up to `Max`, but
-nobody has checked what actual power that corresponds to, whether it stays inside the limits
-where you are, or how the amplifier takes a mismatched antenna. Treat it as unverified.
-Sensible caution:
+**We do not know what power we transmit at.** The `TX pwr` field does not set a power, it sets
+the HackRF's transmit gain, a number from 0 to 47. `Custom` is that same gain typed by hand,
+and `Region` simply lowers it from the maximum by the difference between your region's limit
+and the most permissive one known. Neither position is calibrated: what any of them comes to in
+real power has never been measured. So this setting cannot be relied on as a way of staying
+inside a limit, and is of little use as it stands. Sensible caution:
 
 - use the lowest power that gets through, not the highest available
 - do not transmit without an antenna, or with one cut for another band; reflected power goes

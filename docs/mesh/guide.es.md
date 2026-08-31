@@ -222,9 +222,12 @@ enlace alguno aunque todo lo demás parezca correcto.
 | `Ignore MQTT pkts` | ocultar los paquetes llegados por internet |
 | `TX pwr` | potencia de transmisión |
 
-**La potencia de transmisión no está medida.** Nadie ha comprobado a qué potencia real
-corresponde `Max`, si respeta los límites de su país, ni cómo aguanta el amplificador una
-antena desadaptada. Use el ajuste más bajo con el que haya enlace y no transmita sin antena.
+**No sabemos con qué potencia transmitimos.** Este campo no fija una potencia, sino la ganancia
+de transmisión del HackRF, un número de 0 a 47. `Custom` es esa misma ganancia a mano, y
+`Region` la baja desde el máximo según la diferencia entre el límite de su región y el más
+permisivo conocido. Ninguna posición está calibrada: a cuánta potencia real corresponde no lo ha
+medido nadie, así que no sirve para asegurar que respeta un límite. Use el ajuste más bajo con
+el que haya enlace y no transmita sin antena.
 
 Abajo, `Whip 1/4 wave` da la longitud de un cuarto de onda para la frecuencia actual. Un hilo
 de esa medida sobre una base metálica funciona bastante mejor que una antena del juego cortada

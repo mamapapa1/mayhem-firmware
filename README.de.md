@@ -13,17 +13,20 @@ der nicht angenommen ist, lebt dieser Fork für sich.
 
 ## Lesen Sie dies, bevor Sie senden
 
-**Mayhem kann senden, und das legt Ihnen Pflichten auf.** Ein HackRF mit PortaPack ist kein
-Empfänger mit Stick, sondern ein vollwertiger Sender von 1 MHz bis 6 GHz. In den meisten
-Ländern ist das Senden außerhalb der Amateur- und der lizenzfreien Bänder verboten, und
-innerhalb davon ist es nach Leistung und Sendezeitanteil begrenzt. Die Verantwortung dafür, was
-und auf welcher Frequenz Sie abstrahlen, liegt bei Ihnen und nicht bei der Firmware. Das
-Mayhem-Projekt sagt das ebenso deutlich, und daran ändert sich hier nichts.
+**Es sendet der HackRF, nicht die Firmware.** Mit PortaPack ist er kein Empfänger mit Stick,
+sondern ein vollwertiger Sender von 1 MHz bis 6 GHz. In den meisten Ländern ist das Senden
+außerhalb der Amateur- und der lizenzfreien Bänder verboten, und innerhalb davon nach Leistung
+und Sendezeitanteil begrenzt. Wofür Sie auf welcher Frequenz auf Sendung gehen, verantworten
+Sie und nicht die Firmware. Das Mayhem-Projekt sagt das ebenso deutlich, und daran ändert sich
+hier nichts.
 
-**Die sichere Sendeleistung ist nicht gemessen.** Es gibt ein Feld `TX pwr` bis `Max`, aber
-niemand hat geprüft, welcher tatsächlichen Leistung das entspricht, ob sie die Grenzwerte bei
-Ihnen einhält und wie der Verstärker eine fehlangepasste Antenne verträgt. Betrachten Sie es
-als ungeprüft. Vernünftige Vorsicht:
+**Wir wissen nicht, mit welcher Leistung wir senden.** Das Feld `TX pwr` stellt keine Leistung
+ein, sondern die Sendeverstärkung des HackRF, eine Zahl von 0 bis 47. `Custom` ist dieselbe
+Verstärkung von Hand, und `Region` senkt sie lediglich gegenüber dem Höchstwert um den
+Unterschied zwischen dem Grenzwert Ihrer Region und dem großzügigsten bekannten. Keine der
+Stellungen ist geeicht: welcher tatsächlichen Leistung sie entsprechen, hat niemand gemessen.
+Auf diese Einstellung kann man sich daher nicht verlassen, um einen Grenzwert einzuhalten, und
+sie nützt vorerst wenig. Vernünftige Vorsicht:
 
 - die kleinste Leistung nehmen, mit der die Verbindung steht, nicht die größte verfügbare
 - nicht ohne Antenne senden und nicht mit einer für ein anderes Band; reflektierte Leistung

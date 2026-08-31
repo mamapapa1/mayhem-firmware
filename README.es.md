@@ -13,17 +13,19 @@ acepte, esta bifurcación va por su cuenta.
 
 ## Lea esto antes de pulsar transmitir
 
-**Mayhem puede transmitir, y eso le impone obligaciones.** Un HackRF con PortaPack no es un
-receptor con un adaptador, es un transmisor completo de 1 MHz a 6 GHz. En la mayoría de países
-transmitir fuera de las bandas de radioaficionado y de las libres está prohibido, y dentro de
-ellas está limitado en potencia y en tiempo de ocupación. La responsabilidad de qué emite y en
-qué frecuencia es suya, no del firmware. El propio proyecto Mayhem lo dice con claridad, y aquí
-no cambia nada.
+**Quien transmite es el HackRF, no el firmware.** Con PortaPack no es un receptor con un
+adaptador, es un transmisor completo de 1 MHz a 6 GHz. En la mayoría de países transmitir fuera
+de las bandas de radioaficionado y de las libres está prohibido, y dentro de ellas está
+limitado en potencia y en tiempo de ocupación. Lo que saca usted al aire, y en qué frecuencia,
+es responsabilidad suya y no del firmware. El propio proyecto Mayhem lo dice con claridad, y
+aquí no cambia nada.
 
-**La potencia de transmisión segura no está medida.** Hay un campo `TX pwr` que llega hasta
-`Max`, pero nadie ha comprobado a qué potencia real corresponde, si respeta los límites de su
-país, ni cómo aguanta el amplificador una antena desadaptada. Considérelo no verificado.
-Prudencia razonable:
+**No sabemos con qué potencia transmitimos.** El campo `TX pwr` no fija una potencia, sino la
+ganancia de transmisión del HackRF, un número de 0 a 47. `Custom` es esa misma ganancia escrita
+a mano, y `Region` se limita a bajarla desde el máximo según la diferencia entre el límite de su
+región y el más permisivo conocido. Ninguna posición está calibrada: a cuánta potencia real
+corresponde no lo ha medido nadie. Por eso este ajuste no sirve para asegurarse de respetar un
+límite, y de momento es de poca utilidad. Prudencia razonable:
 
 - use la potencia más baja con la que haya enlace, no la más alta disponible
 - no transmita sin antena, ni con una cortada para otra banda: la potencia reflejada vuelve al

@@ -225,12 +225,10 @@ no link at all while everything else still looks healthy.
 | `Ignore MQTT pkts` | hide packets that arrived through the internet |
 | `TX pwr` | transmit power |
 
-**We do not know what power we transmit at.** This field does not set a power, it sets the
-HackRF's transmit gain, a number from 0 to 47. `Custom` is that same gain by hand, and `Region`
-lowers it from the maximum by the difference between your region's limit and the most permissive
-one known. No position is calibrated: what any of them comes to in real power has never been
-measured, so it cannot be relied on to keep you inside a limit. Use the lowest setting that gets
-through, and do not transmit without an antenna.
+About `TX pwr`: it is the transmit gain, a number from 0 to 47, not a power. Neither `Region`
+nor `Custom` is calibrated and nobody has measured what either comes to in watts, so they cannot
+be used to stay inside a limit. Use the lowest setting that gets through, and do not transmit
+without an antenna.
 
 At the bottom, `Whip 1/4 wave` gives the quarter wave length for the current frequency. A wire
 of that length on a metal base works noticeably better than a kit antenna cut for another band.

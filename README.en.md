@@ -11,30 +11,19 @@ The work is proposed upstream as
 [PR #3306](https://github.com/portapack-mayhem/mayhem-firmware/pull/3306). Until that is
 accepted, this fork lives on its own.
 
-## Read this before you press transmit
+## Careful with transmitting
 
-**It is the HackRF that transmits, not the firmware.** With a PortaPack it is not a receiver
-with a dongle, it is a full transmitter from 1 MHz to 6 GHz. In most countries transmitting
-outside the amateur and licence-free bands is prohibited, and inside them it is limited by
-power and by duty cycle. What you put on the air, and where, is your responsibility and not the
-firmware's. The Mayhem project says as much, and nothing changes here.
+The HackRF transmits from 1 MHz to 6 GHz. What goes on the air, and on what frequency, is your
+decision and your responsibility: in most countries transmitting outside the licence-free bands
+is prohibited, and inside them it is limited by power and by how long you hold the channel.
 
-**We do not know what power we transmit at.** The `TX pwr` field does not set a power, it sets
-the HackRF's transmit gain, a number from 0 to 47. `Custom` is that same gain typed by hand,
-and `Region` simply lowers it from the maximum by the difference between your region's limit
-and the most permissive one known. Neither position is calibrated: what any of them comes to in
-real power has never been measured. So this setting cannot be relied on as a way of staying
-inside a limit, and is of little use as it stands. Sensible caution:
+We have not measured the power. The `TX pwr` field sets the transmit gain, a number from 0 to
+47, not a power. Neither `Region` nor `Custom` is calibrated, so neither can be used to stay
+inside a limit. Use the lowest setting that gets through, do not transmit without an antenna,
+and do not hold a continuous transmission. If you are not sure the band is open where you are,
+turn on `RX only` and listen.
 
-- use the lowest power that gets through, not the highest available
-- do not transmit without an antenna, or with one cut for another band; reflected power goes
-  back into the amplifier
-- do not hold a continuous transmission; the 868 MHz band in Europe has duty cycle limits
-- if you are unsure whether the band is open where you are, stay on receive: the app has an
-  `RX only` mode for exactly this
-
-The app does not bypass or weaken any limit: it speaks the same protocol on the same
-frequencies as stock Meshtastic nodes.
+The app bypasses nothing: same frequencies and same protocol as stock Meshtastic nodes.
 
 **User guide with screenshots:**
 [Русский](docs/mesh/guide.ru.md) ·

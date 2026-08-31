@@ -11,32 +11,19 @@ Die Arbeit ist dem Hauptprojekt als
 [PR #3306](https://github.com/portapack-mayhem/mayhem-firmware/pull/3306) vorgeschlagen. Solange
 der nicht angenommen ist, lebt dieser Fork für sich.
 
-## Lesen Sie dies, bevor Sie senden
+## Vorsicht beim Senden
 
-**Es sendet der HackRF, nicht die Firmware.** Mit PortaPack ist er kein Empfänger mit Stick,
-sondern ein vollwertiger Sender von 1 MHz bis 6 GHz. In den meisten Ländern ist das Senden
-außerhalb der Amateur- und der lizenzfreien Bänder verboten, und innerhalb davon nach Leistung
-und Sendezeitanteil begrenzt. Wofür Sie auf welcher Frequenz auf Sendung gehen, verantworten
-Sie und nicht die Firmware. Das Mayhem-Projekt sagt das ebenso deutlich, und daran ändert sich
-hier nichts.
+Der HackRF sendet von 1 MHz bis 6 GHz. Was auf welcher Frequenz in den Äther geht, entscheiden
+Sie, und Sie verantworten es auch: in den meisten Ländern ist das Senden außerhalb der
+lizenzfreien Bänder verboten, und innerhalb davon nach Leistung und Kanalbelegung begrenzt.
 
-**Wir wissen nicht, mit welcher Leistung wir senden.** Das Feld `TX pwr` stellt keine Leistung
-ein, sondern die Sendeverstärkung des HackRF, eine Zahl von 0 bis 47. `Custom` ist dieselbe
-Verstärkung von Hand, und `Region` senkt sie lediglich gegenüber dem Höchstwert um den
-Unterschied zwischen dem Grenzwert Ihrer Region und dem großzügigsten bekannten. Keine der
-Stellungen ist geeicht: welcher tatsächlichen Leistung sie entsprechen, hat niemand gemessen.
-Auf diese Einstellung kann man sich daher nicht verlassen, um einen Grenzwert einzuhalten, und
-sie nützt vorerst wenig. Vernünftige Vorsicht:
+Die Leistung haben wir nicht gemessen. Das Feld `TX pwr` stellt die Sendeverstärkung ein, eine
+Zahl von 0 bis 47, keine Leistung. Weder `Region` noch `Custom` ist geeicht, damit lässt sich
+kein Grenzwert einhalten. Nehmen Sie die kleinste Stufe, mit der es reicht, senden Sie nicht
+ohne Antenne und nicht im Dauerbetrieb. Sind Sie unsicher, ob das Band bei Ihnen frei ist,
+schalten Sie `RX only` ein und hören Sie zu.
 
-- die kleinste Leistung nehmen, mit der die Verbindung steht, nicht die größte verfügbare
-- nicht ohne Antenne senden und nicht mit einer für ein anderes Band; reflektierte Leistung
-  läuft in den Verstärker zurück
-- keine Dauersendung; im 868-MHz-Band gelten in Europa Grenzen für den Sendezeitanteil
-- wenn Sie nicht sicher sind, ob das Band bei Ihnen frei ist, bleiben Sie beim Empfang: die App
-  hat dafür die Betriebsart `RX only`
-
-Die App umgeht und schwächt keine Vorschrift: sie spricht dasselbe Protokoll auf denselben
-Frequenzen wie Meshtastic-Seriengeräte.
+Die App umgeht nichts: dieselben Frequenzen und dasselbe Protokoll wie Meshtastic-Seriengeräte.
 
 **Bedienungsanleitung mit Bildschirmfotos:**
 [Русский](docs/mesh/guide.ru.md) ·
